@@ -1,1312 +1,409 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saanvi International School | Excellence in Education</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --navy: #07111f;
-  --navy-mid: #0e1e35;
-  --navy-light: #162540;
-  --gold: #C9A455;
-  --gold-light: #E8C97A;
-  --gold-dim: rgba(201,164,85,0.15);
-  --cream: #F8F4EC;
-  --white: #FFFFFF;
-  --glass: rgba(255,255,255,0.05);
-  --glass-border: rgba(201,164,85,0.18);
-  --text-muted: rgba(255,255,255,0.55);
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'Nunito Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Saanvi International School — CBSE Affiliated (Affiliation No: 130464), Rajampet, Kadapa, Andhra Pradesh. Co-educational Day School from Nursery to Class 12. Knowledge is soul." />
+  <meta name="keywords" content="Saanvi International School, CBSE school Rajampet, Kadapa school, best school Andhra Pradesh, Boyanapalli school" />
+  <meta name="author" content="Saanvi International School" />
+  <meta property="og:title" content="Saanvi International School — Knowledge is Soul" />
+  <meta property="og:description" content="CBSE Affiliated co-educational day school in Rajampet, Kadapa, Andhra Pradesh. Nursery to Class 12." />
+  <meta property="og:type" content="website" />
+  <title>Saanvi International School — Knowledge is Soul</title>
 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 1.8rem 4rem;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: all 0.5s ease;
-}
-nav.scrolled {
-  background: rgba(7,17,31,0.92);
-  backdrop-filter: blur(24px);
-  padding: 1rem 4rem;
-  border-bottom: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-}
-.nav-logo { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
-.nav-logo-emblem {
-  width: 46px; height: 46px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem; font-weight: 700; color: var(--navy);
-  box-shadow: 0 0 20px rgba(201,164,85,0.4);
-}
-.nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--white); line-height: 1.2; }
-.nav-logo-text span { display: block; font-size: 0.62rem; font-family: 'Nunito Sans'; font-weight: 600; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  text-decoration: none; color: rgba(255,255,255,0.75);
-  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  transition: color 0.3s; position: relative;
-}
-.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
-.nav-links a:hover { color: var(--gold); }
-.nav-links a:hover::after { width: 100%; }
-.nav-cta {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--navy) !important; padding: 0.65rem 1.75rem; border-radius: 50px;
-  font-weight: 800 !important; font-size: 0.8rem !important; letter-spacing: 0.05em !important;
-  transition: transform 0.3s, box-shadow 0.3s !important; box-shadow: 0 4px 15px rgba(201,164,85,0.35);
-}
-.nav-cta::after { display: none !important; }
-.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,164,85,0.5) !important; color: var(--navy) !important; }
-.menu-btn { display: none; background: none; border: 1px solid var(--glass-border); color: var(--white); width: 40px; height: 40px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; }
+  <!-- Three.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
-/* ── HERO ── */
-#hero { position: relative; width: 100vw; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-#heroCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-#bgShader { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-.hero-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, transparent 25%, rgba(7,17,31,0.65) 75%); z-index: 1; }
-.hero-content { position: relative; z-index: 2; text-align: center; max-width: 920px; padding: 0 2rem; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  background: rgba(201,164,85,0.08); border: 1px solid rgba(201,164,85,0.3);
-  backdrop-filter: blur(10px); padding: 0.55rem 1.4rem; border-radius: 50px;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
-  margin-bottom: 1.8rem; opacity: 0; transform: translateY(20px);
-}
-.badge-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; animation: glow-pulse 2s infinite; }
-@keyframes glow-pulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(201,164,85,0.6); }
-  50% { box-shadow: 0 0 0 5px rgba(201,164,85,0); }
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 6.5vw, 6rem); font-weight: 300; line-height: 1.1;
-  margin-bottom: 1.75rem; opacity: 0; transform: translateY(40px);
-}
-.hero-title em { font-style: italic; color: var(--gold); }
-.hero-subtitle {
-  font-size: clamp(0.95rem, 1.8vw, 1.15rem); font-weight: 300; line-height: 1.8;
-  color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 3rem;
-  opacity: 0; transform: translateY(30px);
-}
-.hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(20px); }
-.btn-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--navy); padding: 1rem 2.75rem; border-radius: 50px;
-  text-decoration: none; font-weight: 800; font-size: 0.88rem; letter-spacing: 0.04em;
-  transition: transform 0.35s, box-shadow 0.35s; display: inline-flex; align-items: center; gap: 0.6rem;
-  box-shadow: 0 6px 25px rgba(201,164,85,0.4);
-}
-.btn-gold:hover { transform: translateY(-4px); box-shadow: 0 16px 45px rgba(201,164,85,0.55); }
-.btn-ghost {
-  background: transparent; color: var(--white); padding: 1rem 2.75rem; border-radius: 50px;
-  text-decoration: none; font-weight: 600; font-size: 0.88rem;
-  border: 1px solid rgba(255,255,255,0.25); transition: all 0.3s;
-  display: inline-flex; align-items: center; gap: 0.6rem;
-}
-.btn-ghost:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,164,85,0.08); }
-.scroll-cue {
-  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  color: rgba(255,255,255,0.35); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-  animation: float-cue 3s ease-in-out infinite;
-}
-@keyframes float-cue { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-6px); } }
-.scroll-line-anim { width: 1px; height: 55px; background: linear-gradient(to bottom, var(--gold), transparent); animation: draw-line 2s ease-in-out infinite; }
-@keyframes draw-line {
-  0% { transform: scaleY(0); transform-origin: top; opacity:1; }
-  49% { transform: scaleY(1); transform-origin: top; opacity:1; }
-  50% { transform: scaleY(1); transform-origin: bottom; opacity:1; }
-  100% { transform: scaleY(0); transform-origin: bottom; opacity:0; }
-}
+  <!-- GSAP + ScrollTrigger CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-/* ── MARQUEE ── */
-.marquee-wrap { overflow: hidden; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); background: var(--navy-mid); padding: 1.4rem 0; }
-.marquee-inner { display: flex; gap: 5rem; animation: marquee 25s linear infinite; width: max-content; }
-.m-item { display: flex; align-items: center; gap: 0.9rem; color: rgba(255,255,255,0.45); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; flex-shrink: 0; }
-.m-star { color: var(--gold); font-size: 0.5rem; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ── SECTION BASE ── */
-.section { padding: 9rem 4rem; max-width: 1400px; margin: 0 auto; }
-.section-tag { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
-.section-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
-.section-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem; }
-.section-h em { font-style: italic; color: var(--gold); }
-.section-p { font-size: 1rem; line-height: 1.85; color: var(--text-muted); max-width: 540px; }
-
-/* ── ABOUT ── */
-.about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: center; }
-.about-visual { position: relative; }
-.about-main-img {
-  width: 100%; aspect-ratio: 4/5.2;
-  background: linear-gradient(140deg, #1a2d50, #0f1e3a);
-  border-radius: 24px; overflow: hidden; position: relative;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-}
-.about-main-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,17,31,0.5), transparent 50%); }
-.about-img-svg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 8rem; opacity: 0.3; }
-.about-float-card {
-  position: absolute; bottom: -2.5rem; right: -2.5rem;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 18px; padding: 2rem 2.25rem; text-align: center;
-  box-shadow: 0 25px 60px rgba(201,164,85,0.35);
-  transform: rotate(2deg);
-}
-.afc-num { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 700; color: var(--navy); line-height: 1; }
-.afc-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(7,17,31,0.7); margin-top: 0.3rem; }
-.about-badge-tl {
-  position: absolute; top: -1.5rem; left: -1.5rem;
-  background: var(--navy-mid); border: 1px solid var(--glass-border);
-  border-radius: 14px; padding: 1rem 1.4rem;
-  display: flex; align-items: center; gap: 0.8rem;
-  backdrop-filter: blur(10px);
-}
-.about-badge-tl .icon { font-size: 1.5rem; }
-.about-badge-tl .text { font-size: 0.75rem; font-weight: 700; color: var(--gold); }
-.about-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem; }
-.af-row {
-  display: flex; align-items: center; gap: 1.25rem;
-  padding: 1.1rem 1.4rem;
-  background: var(--glass); border: 1px solid var(--glass-border);
-  border-radius: 14px; transition: all 0.35s;
-}
-.af-row:hover { border-color: rgba(201,164,85,0.5); background: rgba(201,164,85,0.06); transform: translateX(6px); }
-.af-icon { width: 42px; height: 42px; background: var(--gold-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; border: 1px solid rgba(201,164,85,0.2); }
-.af-text { font-size: 0.9rem; font-weight: 700; }
-
-/* ── STATS ── */
-.stats-full { background: linear-gradient(135deg, var(--navy-light), var(--navy-mid)); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); padding: 6rem 4rem; }
-.stats-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; }
-.stat-cell { padding: 3rem 2rem; text-align: center; position: relative; }
-.stat-cell:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 25%; height: 50%; width: 1px; background: var(--glass-border); }
-.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
-.stat-suf { font-size: 2.5rem; color: var(--gold-light); }
-.stat-lbl { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.6rem; }
-
-/* ── PROGRAMS ── */
-.prg-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
-.prg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-.prg-card {
-  background: var(--glass); border: 1px solid var(--glass-border);
-  border-radius: 22px; padding: 2.75rem 2.25rem;
-  transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer; position: relative; overflow: hidden;
-}
-.prg-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); transition: transform 0.4s; }
-.prg-card:hover::before { transform: scaleX(1); }
-.prg-card:hover { border-color: rgba(201,164,85,0.4); transform: translateY(-12px); box-shadow: 0 35px 70px rgba(0,0,0,0.5), 0 0 40px rgba(201,164,85,0.08); background: rgba(255,255,255,0.07); }
-.prg-icon { font-size: 2.8rem; margin-bottom: 1.75rem; display: block; }
-.prg-grade { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
-.prg-name { font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.2; }
-.prg-desc { font-size: 0.87rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 2rem; }
-.prg-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.prg-tag { padding: 0.3rem 0.8rem; border-radius: 50px; background: var(--gold-dim); border: 1px solid rgba(201,164,85,0.2); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; color: var(--gold); }
-.prg-arrow { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 800; color: var(--gold); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 2rem; transition: gap 0.3s; }
-.prg-card:hover .prg-arrow { gap: 1rem; }
-
-/* ── WHY ── */
-.why-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 7rem; align-items: center; }
-.why-grid-items { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.why-card {
-  padding: 2rem; border-radius: 18px;
-  background: var(--glass); border: 1px solid var(--glass-border);
-  transition: all 0.35s;
-}
-.why-card:hover { border-color: rgba(201,164,85,0.4); background: rgba(201,164,85,0.05); transform: translateY(-5px); }
-.why-n { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: rgba(201,164,85,0.15); line-height: 1; margin-bottom: 0.8rem; }
-.why-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; }
-.why-desc { font-size: 0.83rem; line-height: 1.75; color: var(--text-muted); }
-
-/* ── GALLERY ── */
-.gallery-full { background: var(--navy-mid); padding: 9rem 4rem; border-top: 1px solid var(--glass-border); }
-.gallery-wrapper { max-width: 1400px; margin: 0 auto; }
-.gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: 230px 230px; gap: 1rem; margin-top: 3.5rem; }
-.g-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; background: linear-gradient(135deg, #1a2d50, #0f1e3a); }
-.g-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-.g-item:nth-child(5) { grid-column: span 2; }
-.g-item-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.g-item:hover .g-item-inner { transform: scale(1.08); }
-.g-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,17,31,0.9) 0%, transparent 55%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
-.g-item:hover .g-overlay { opacity: 1; }
-.g-label { font-size: 0.82rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
-
-/* ── TESTIMONIALS ── */
-.testi-section { padding: 9rem 4rem; max-width: 1400px; margin: 0 auto; }
-.testi-slider { overflow: hidden; margin-top: 4rem; }
-.testi-track { display: flex; gap: 2rem; transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.testi-card {
-  flex-shrink: 0; width: calc(33.33% - 1.34rem);
-  background: var(--glass); border: 1px solid var(--glass-border);
-  border-radius: 22px; padding: 2.75rem;
-}
-.testi-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
-.testi-q {
-  font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; line-height: 1.85;
-  color: rgba(255,255,255,0.82); font-style: italic; margin-bottom: 2rem;
-  position: relative; padding-top: 1rem;
-}
-.testi-q::before { content: '\201C'; position: absolute; top: -1.2rem; left: -0.4rem; font-size: 5.5rem; color: var(--gold); opacity: 0.2; font-family: 'Cormorant Garamond', serif; line-height: 1; }
-.testi-author { display: flex; align-items: center; gap: 1rem; }
-.t-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-light)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); flex-shrink: 0; }
-.t-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.2rem; }
-.t-role { font-size: 0.78rem; color: var(--gold); font-weight: 600; }
-.testi-nav { display: flex; gap: 0.75rem; margin-top: 3rem; justify-content: center; }
-.t-nav-btn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--glass-border); background: var(--glass); color: var(--white); font-size: 1.1rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
-.t-nav-btn:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-
-/* ── ADMISSIONS CTA ── */
-.cta-full { position: relative; background: var(--navy-light); padding: 10rem 4rem; text-align: center; border-top: 1px solid var(--glass-border); overflow: hidden; }
-#ctaCanvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; }
-.cta-content { position: relative; z-index: 1; max-width: 750px; margin: 0 auto; }
-.cta-content .section-h { font-size: clamp(2.5rem, 5vw, 4.5rem); text-align: center; }
-.cta-content .section-p { text-align: center; margin: 0 auto 3rem; max-width: 520px; }
-.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-/* ── CONTACT ── */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
-.c-info { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
-.c-row { display: flex; gap: 1.25rem; align-items: flex-start; }
-.c-icon { width: 50px; height: 50px; background: var(--gold-dim); border: 1px solid rgba(201,164,85,0.2); border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
-.c-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-.c-value { font-size: 0.92rem; color: rgba(255,255,255,0.78); line-height: 1.65; }
-.c-form { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
-.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-.f-group { display: flex; flex-direction: column; gap: 0.55rem; }
-.f-group label { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-.f-group input, .f-group select, .f-group textarea {
-  background: var(--glass); border: 1px solid var(--glass-border);
-  border-radius: 12px; padding: 0.95rem 1.3rem;
-  color: var(--white); font-family: 'Nunito Sans', sans-serif; font-size: 0.9rem;
-  transition: border-color 0.3s, box-shadow 0.3s; outline: none; backdrop-filter: blur(10px);
-}
-.f-group input:focus, .f-group select:focus, .f-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,164,85,0.12); }
-.f-group select option { background: var(--navy-mid); }
-.f-group textarea { resize: none; height: 130px; }
-.f-submit { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); border: none; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.04em; cursor: pointer; transition: all 0.35s; box-shadow: 0 6px 25px rgba(201,164,85,0.35); }
-.f-submit:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(201,164,85,0.55); }
-
-/* ── FOOTER ── */
-footer { background: var(--navy-mid); border-top: 1px solid var(--glass-border); padding: 6rem 4rem 2.5rem; }
-.footer-inner { max-width: 1400px; margin: 0 auto; }
-.footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 5rem; }
-.footer-brand p { font-size: 0.875rem; line-height: 1.9; color: rgba(255,255,255,0.45); margin: 1.5rem 0; max-width: 280px; }
-.f-social { display: flex; gap: 0.75rem; }
-.f-s-btn { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.3s; }
-.f-s-btn:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-.footer-col h4 { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.75rem; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-.footer-col ul li a { text-decoration: none; font-size: 0.875rem; color: rgba(255,255,255,0.45); transition: color 0.3s; }
-.footer-col ul li a:hover { color: var(--white); }
-.footer-bottom { padding-top: 2.5rem; border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-.footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
-.footer-bottom a { color: var(--gold); text-decoration: none; }
-
-/* ── REVEAL ANIMATION ── */
-.reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.9s ease, transform 0.9s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.9s ease, transform 0.9s ease; }
-.reveal-left.visible { opacity: 1; transform: translateX(0); }
-.reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.9s ease, transform 0.9s ease; }
-.reveal-right.visible { opacity: 1; transform: translateX(0); }
-.stagger > * { opacity: 0; transform: translateY(35px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0.05s; }
-.stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.15s; }
-.stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.25s; }
-.stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.35s; }
-.stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.45s; }
-.stagger.visible > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay: 0.55s; }
-
-/* ── MOBILE ── */
-@media (max-width: 1024px) {
-  nav { padding: 1.5rem 2rem; }
-  nav.scrolled { padding: 1rem 2rem; }
-  .nav-links, .nav-cta { display: none; }
-  .menu-btn { display: flex; align-items: center; justify-content: center; }
-  .section { padding: 6rem 2rem; }
-  .about-grid, .why-layout, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .prg-header { grid-template-columns: 1fr; gap: 2rem; }
-  .prg-grid { grid-template-columns: 1fr; }
-  .stats-inner { grid-template-columns: 1fr 1fr; }
-  .stat-cell:nth-child(2)::after { display: none; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .g-item:nth-child(1) { aspect-ratio: 1; }
-  .g-item:nth-child(5) { grid-column: span 2; }
-  .testi-card { width: 85vw; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-  .f-row { grid-template-columns: 1fr; }
-  .stats-full, .gallery-full, .cta-full { padding: 6rem 2rem; }
-}
-@media (max-width: 640px) {
-  .hero-title { font-size: 2.6rem; }
-  .stats-inner { grid-template-columns: 1fr 1fr; }
-  .footer-top { grid-template-columns: 1fr; }
-  .why-grid-items { grid-template-columns: 1fr; }
-}
-</style>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-emblem">S</div>
-    <div class="nav-logo-text">
-      Saanvi International School
-      <span>Est. 2005 · CBSE Affiliated</span>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#programs">Programs</a></li>
-    <li><a href="#facilities">Facilities</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#admissions" class="nav-cta">Admissions 2025</a></li>
-  </ul>
-  <button class="menu-btn">☰</button>
-</nav>
+  <!-- ═══════════════════════════════════════════
+       BACKGROUND LAYER — Three.js Canvas
+  ═══════════════════════════════════════════ -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-<!-- HERO -->
-<section id="hero">
-  <canvas id="bgShader"></canvas>
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-vignette"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      Now Accepting Admissions 2025–26
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <nav class="nav-inner glass-pill" aria-label="Primary navigation">
+      <a href="#hero" class="nav-logo" aria-label="Saanvi International School home">
+        <span class="logo-mark" aria-hidden="true">SIS</span>
+        <span class="logo-text">Saanvi International</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#vision" class="nav-link">Vision</a></li>
+        <li><a href="#campus" class="nav-link">Campus</a></li>
+        <li><a href="#leadership" class="nav-link">Leadership</a></li>
+        <li><a href="#contact" class="nav-link nav-link--cta">Admissions</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <!-- Mobile drawer -->
+    <div id="mobile-nav" class="mobile-nav glass-deep" role="dialog" aria-modal="true" aria-label="Mobile navigation" hidden>
+      <ul role="list">
+        <li><a href="#vision" class="mobile-nav-link">Vision</a></li>
+        <li><a href="#campus" class="mobile-nav-link">Campus</a></li>
+        <li><a href="#leadership" class="mobile-nav-link">Leadership</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Admissions</a></li>
+      </ul>
     </div>
-    <h1 class="hero-title">
-      Where Young Minds<br><em>Discover Greatness</em>
-    </h1>
-    <p class="hero-subtitle">
-      A world-class education rooted in values, innovation, and the timeless pursuit of excellence — nurturing leaders, thinkers, and changemakers since 2005.
-    </p>
-    <div class="hero-actions">
-      <a href="#admissions" class="btn-gold">Apply Now <span>→</span></a>
-      <a href="#about" class="btn-ghost">Explore School <span>↓</span></a>
-    </div>
-  </div>
-  <div class="scroll-cue">
-    <div class="scroll-line-anim"></div>
-    Scroll
-  </div>
-</section>
+  </header>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-inner">
-    <div class="m-item"><span class="m-star">✦</span> CBSE Affiliated School</div>
-    <div class="m-item"><span class="m-star">✦</span> ISO 9001:2015 Certified</div>
-    <div class="m-item"><span class="m-star">✦</span> 2500+ Students Enrolled</div>
-    <div class="m-item"><span class="m-star">✦</span> State Topper 2024</div>
-    <div class="m-item"><span class="m-star">✦</span> Award-Winning Faculty</div>
-    <div class="m-item"><span class="m-star">✦</span> Smart Classrooms</div>
-    <div class="m-item"><span class="m-star">✦</span> Olympic-Size Swimming Pool</div>
-    <div class="m-item"><span class="m-star">✦</span> 100% Placement Record</div>
-    <div class="m-item"><span class="m-star">✦</span> CBSE Affiliated School</div>
-    <div class="m-item"><span class="m-star">✦</span> ISO 9001:2015 Certified</div>
-    <div class="m-item"><span class="m-star">✦</span> 2500+ Students Enrolled</div>
-    <div class="m-item"><span class="m-star">✦</span> State Topper 2024</div>
-    <div class="m-item"><span class="m-star">✦</span> Award-Winning Faculty</div>
-    <div class="m-item"><span class="m-star">✦</span> Smart Classrooms</div>
-    <div class="m-item"><span class="m-star">✦</span> Olympic-Size Swimming Pool</div>
-    <div class="m-item"><span class="m-star">✦</span> 100% Placement Record</div>
-  </div>
-</div>
+  <main id="main-content">
 
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="about-grid">
-    <div class="about-visual reveal-left">
-      <div class="about-badge-tl">
-        <div class="icon">🏆</div>
-        <div class="text">State Rank #1<br><span style="color:rgba(255,255,255,0.5);font-size:0.65rem;font-weight:600">Board Exams 2024</span></div>
-      </div>
-      <div class="about-main-img">
-        <div class="about-img-svg">🏫</div>
-      </div>
-      <div class="about-float-card">
-        <div class="afc-num">20</div>
-        <div class="afc-label">Years of Excellence</div>
-      </div>
-    </div>
-    <div class="about-text reveal-right">
-      <div class="section-tag">Our Story</div>
-      <h2 class="section-h">Building <em>Tomorrow's</em> Leaders Today</h2>
-      <p class="section-p">
-        Since 2005, Saanvi International School has stood as a beacon of academic excellence in Andhra Pradesh. We blend rigorous academics with holistic development — shaping students who excel not just in examinations, but in life.
-      </p>
-      <p class="section-p" style="margin-top:1rem;">
-        Our vision is simple: every child who walks through our gates leaves equipped with the knowledge, character, and confidence to change the world.
-      </p>
-      <div class="about-features stagger">
-        <div class="af-row">
-          <div class="af-icon">🎓</div>
-          <div class="af-text">CBSE Curriculum with International Exposure</div>
-        </div>
-        <div class="af-row">
-          <div class="af-icon">🔬</div>
-          <div class="af-text">State-of-the-Art Science & Technology Labs</div>
-        </div>
-        <div class="af-row">
-          <div class="af-icon">🌍</div>
-          <div class="af-text">Global Exchange Programs & Study Tours</div>
-        </div>
-        <div class="af-row">
-          <div class="af-icon">🎨</div>
-          <div class="af-text">Rich Arts, Music & Sports Programme</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- ═══════════════════════════════════════════
+         SECTION 1 — HERO
+    ═══════════════════════════════════════════ -->
+    <section id="hero" class="section-hero" aria-labelledby="hero-heading">
+      <div class="hero-inner">
 
-<!-- STATS -->
-<div class="stats-full" id="stats">
-  <div class="stats-inner stagger">
-    <div class="stat-cell">
-      <div class="stat-num"><span class="count" data-target="2500">0</span><span class="stat-suf">+</span></div>
-      <div class="stat-lbl">Students Enrolled</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num"><span class="count" data-target="180">0</span><span class="stat-suf">+</span></div>
-      <div class="stat-lbl">Expert Faculty</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num"><span class="count" data-target="98">0</span><span class="stat-suf">%</span></div>
-      <div class="stat-lbl">Board Pass Rate</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num"><span class="count" data-target="20">0</span><span class="stat-suf">+</span></div>
-      <div class="stat-lbl">Years of Legacy</div>
-    </div>
-  </div>
-</div>
+        <!-- CBSE badge pill -->
+        <div class="hero-badge glass-pill-sm gsap-reveal" aria-label="CBSE Affiliated school">
+          <span class="badge-dot" aria-hidden="true"></span>
+          <span class="badge-text">CBSE Affiliated · No. 130464</span>
+        </div>
 
-<!-- PROGRAMS -->
-<section class="section" id="programs">
-  <div class="prg-header">
-    <div class="reveal">
-      <div class="section-tag">Academic Programs</div>
-      <h2 class="section-h">A Curriculum for <em>Every</em> Aspiration</h2>
-    </div>
-    <p class="section-p reveal" style="margin-top:0;">
-      From nurturing the youngest learners to preparing students for competitive entrances and global universities — our programs are designed with purpose.
-    </p>
-  </div>
-  <div class="prg-grid stagger">
-    <div class="prg-card">
-      <span class="prg-icon">🌱</span>
-      <div class="prg-grade">Pre-Primary · Nursery – KG</div>
-      <div class="prg-name">Early Childhood Programme</div>
-      <div class="prg-desc">A play-based, activity-rich environment that sparks curiosity, builds social skills, and lays a strong foundation for lifelong learning through joyful discovery.</div>
-      <div class="prg-tags"><span class="prg-tag">Montessori</span><span class="prg-tag">Activity-Based</span><span class="prg-tag">Story Time</span></div>
-      <div class="prg-arrow">Learn More →</div>
-    </div>
-    <div class="prg-card">
-      <span class="prg-icon">📚</span>
-      <div class="prg-grade">Primary · Classes I–V</div>
-      <div class="prg-name">Primary Excellence Programme</div>
-      <div class="prg-desc">A structured yet creative curriculum that balances core academics with arts, sports, and technology — developing well-rounded young learners.</div>
-      <div class="prg-tags"><span class="prg-tag">CBSE</span><span class="prg-tag">Smart Classes</span><span class="prg-tag">Coding</span></div>
-      <div class="prg-arrow">Learn More →</div>
-    </div>
-    <div class="prg-card">
-      <span class="prg-icon">🔭</span>
-      <div class="prg-grade">Middle School · Classes VI–VIII</div>
-      <div class="prg-name">Middle Years Programme</div>
-      <div class="prg-desc">Deepening academic rigour alongside leadership projects, STEM exploration, and global citizenship — the critical years of identity and ambition.</div>
-      <div class="prg-tags"><span class="prg-tag">STEM</span><span class="prg-tag">Leadership</span><span class="prg-tag">Robotics</span></div>
-      <div class="prg-arrow">Learn More →</div>
-    </div>
-    <div class="prg-card">
-      <span class="prg-icon">🏅</span>
-      <div class="prg-grade">Secondary · Classes IX–X</div>
-      <div class="prg-name">Board Excellence Programme</div>
-      <div class="prg-desc">Focused board preparation with daily practice, personalised mentoring, and intensive mock sessions — consistently delivering state top-rankers.</div>
-      <div class="prg-tags"><span class="prg-tag">CBSE Board</span><span class="prg-tag">Mock Tests</span><span class="prg-tag">Mentoring</span></div>
-      <div class="prg-arrow">Learn More →</div>
-    </div>
-    <div class="prg-card">
-      <span class="prg-icon">🚀</span>
-      <div class="prg-grade">Senior Secondary · Classes XI–XII</div>
-      <div class="prg-name">Senior & Competitive Edge</div>
-      <div class="prg-desc">Science, Commerce, and Humanities streams with integrated JEE/NEET/CA prep, career counselling, and university admission guidance.</div>
-      <div class="prg-tags"><span class="prg-tag">Science</span><span class="prg-tag">Commerce</span><span class="prg-tag">JEE/NEET</span></div>
-      <div class="prg-arrow">Learn More →</div>
-    </div>
-    <div class="prg-card">
-      <span class="prg-icon">🌐</span>
-      <div class="prg-grade">Co-Curricular</div>
-      <div class="prg-name">Beyond Academics</div>
-      <div class="prg-desc">30+ clubs spanning debate, robotics, fine arts, music, dance, cricket, swimming, basketball, and international olympiads — excellence beyond textbooks.</div>
-      <div class="prg-tags"><span class="prg-tag">Sports</span><span class="prg-tag">Arts</span><span class="prg-tag">Olympiads</span></div>
-      <div class="prg-arrow">Explore All →</div>
-    </div>
-  </div>
-</section>
+        <!-- School name -->
+        <h1 id="hero-heading" class="hero-title">
+          <span class="hero-title__line gsap-reveal-line" aria-hidden="true">Saanvi</span>
+          <span class="hero-title__line hero-title__line--indent gsap-reveal-line" aria-hidden="true">International</span>
+          <span class="hero-title__line gsap-reveal-line" aria-hidden="true">School.</span>
+          <span class="sr-only">Saanvi International School</span>
+        </h1>
 
-<!-- WHY CHOOSE US -->
-<section class="section" id="why" style="background: transparent; padding-top: 0;">
-  <div class="why-layout">
-    <div class="reveal-left">
-      <div class="section-tag">Why Saanvi</div>
-      <h2 class="section-h">An Education That <em>Transforms</em></h2>
-      <p class="section-p">We don't just teach — we inspire, mentor, challenge, and celebrate every student's unique path to greatness.</p>
-      <div style="margin-top:2.5rem;">
-        <a href="#contact" class="btn-gold">Schedule a Visit →</a>
-      </div>
-    </div>
-    <div class="why-grid-items stagger">
-      <div class="why-card">
-        <div class="why-n">01</div>
-        <div class="why-title">World-Class Infrastructure</div>
-        <div class="why-desc">15-acre campus with smart classrooms, olympiad labs, art studios, and a 400m athletics track.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-n">02</div>
-        <div class="why-title">Expert Faculty</div>
-        <div class="why-desc">180+ qualified educators, many with international training, dedicated to personalised student growth.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-n">03</div>
-        <div class="why-title">Proven Results</div>
-        <div class="why-desc">Consistent state and national toppers. 100% board results for 15 consecutive years.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-n">04</div>
-        <div class="why-title">Holistic Development</div>
-        <div class="why-desc">Equal focus on academics, arts, sports, and character — nurturing the whole child, not just grades.</div>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- Motto -->
+        <p class="hero-motto gsap-reveal" aria-label="School motto: Knowledge is Soul">
+          <span class="motto-divider" aria-hidden="true">—</span>
+          <em>Knowledge is Soul</em>
+        </p>
 
-<!-- GALLERY -->
-<div class="gallery-full" id="facilities">
-  <div class="gallery-wrapper">
-    <div class="reveal">
-      <div class="section-tag">Campus Life</div>
-      <h2 class="section-h">Where Learning <em>Comes Alive</em></h2>
-    </div>
-    <div class="gallery-grid stagger" id="gallery">
-      <div class="g-item">
-        <div class="g-item-inner">🏛️</div>
-        <div class="g-overlay"><div class="g-label">Main Academic Block</div></div>
-      </div>
-      <div class="g-item">
-        <div class="g-item-inner">🔬</div>
-        <div class="g-overlay"><div class="g-label">Science Laboratories</div></div>
-      </div>
-      <div class="g-item">
-        <div class="g-item-inner">📖</div>
-        <div class="g-overlay"><div class="g-label">Digital Library</div></div>
-      </div>
-      <div class="g-item">
-        <div class="g-item-inner">🎨</div>
-        <div class="g-overlay"><div class="g-label">Arts & Culture Centre</div></div>
-      </div>
-      <div class="g-item">
-        <div class="g-item-inner">🏊</div>
-        <div class="g-overlay"><div class="g-label">Swimming Pool</div></div>
-      </div>
-      <div class="g-item">
-        <div class="g-item-inner">🤸</div>
-        <div class="g-overlay"><div class="g-label">Sports Complex</div></div>
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Sub-descriptor -->
+        <p class="hero-descriptor gsap-reveal">
+          Co-educational Day School &nbsp;·&nbsp; Nursery to Class XII &nbsp;·&nbsp; Est. 2015
+        </p>
 
-<!-- TESTIMONIALS -->
-<section class="testi-section">
-  <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
-    <div class="section-tag" style="justify-content:center;">Student & Parent Stories</div>
-    <h2 class="section-h" style="text-align:center;">Voices That <em>Inspire</em></h2>
-  </div>
-  <div class="testi-slider">
-    <div class="testi-track" id="testiTrack">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-q">Saanvi has been nothing short of transformational for my daughter. The teachers here don't just instruct — they inspire. She topped the state in Class 10 and it was all made possible by the incredible mentoring she received here.</p>
-        <div class="testi-author">
-          <div class="t-avatar">P</div>
-          <div><div class="t-name">Priya Venkatesh</div><div class="t-role">Parent · Class X Parent</div></div>
+        <!-- CTA group -->
+        <div class="hero-cta-group gsap-reveal" role="group" aria-label="Call to action buttons">
+          <a href="#contact" class="btn-primary glass-pill-btn">
+            Apply for Admission
+            <svg class="btn-arrow" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="tel:+919963657658" class="btn-secondary glass-pill-btn">
+            <svg class="btn-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 2.5C2 2.224 2.224 2 2.5 2h2.72a.5.5 0 0 1 .487.386l.816 3.265a.5.5 0 0 1-.146.497L4.9 7.1a9.065 9.065 0 0 0 3.999 4l.952-1.476a.5.5 0 0 1 .497-.146l3.265.816A.5.5 0 0 1 14 10.78V13.5a.5.5 0 0 1-.5.5C6.044 14 2 9.956 2 2.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+            +91 99636 57658
+          </a>
         </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-q">The JEE preparation integrated with our Class 12 curriculum was exceptional. I secured AIR 847 in JEE Advanced, and a huge part of that credit goes to the incredible faculty at Saanvi who never stopped believing in me.</p>
-        <div class="testi-author">
-          <div class="t-avatar">A</div>
-          <div><div class="t-name">Aditya Sharma</div><div class="t-role">Alumni · IIT Bombay, 2024</div></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-q">My son has blossomed into a confident, curious young man. The balance of academics and co-curriculars here is unmatched. He leads the robotics club and recently won the National Science Olympiad — all at age 14!</p>
-        <div class="testi-author">
-          <div class="t-avatar">R</div>
-          <div><div class="t-name">Ramesh Naidu</div><div class="t-role">Parent · Class IX Parent</div></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-q">From Nursery to Class 12, Saanvi gave me the best years of my life. I'm now studying medicine at AIIMS Delhi, and the strong foundation in Biology and Chemistry from my school years made all the difference.</p>
-        <div class="testi-author">
-          <div class="t-avatar">S</div>
-          <div><div class="t-name">Sravani Reddy</div><div class="t-role">Alumni · AIIMS Delhi, 2023</div></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-q">What sets Saanvi apart is the genuine care. Every teacher knows every child by name. The personalised attention my twins received helped both of them discover their passions — one in music, one in engineering.</p>
-        <div class="testi-author">
-          <div class="t-avatar">L</div>
-          <div><div class="t-name">Lakshmi Prasad</div><div class="t-role">Parent · Twin daughters</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="testi-nav">
-    <button class="t-nav-btn" id="tPrev">←</button>
-    <button class="t-nav-btn" id="tNext">→</button>
-  </div>
-</section>
 
-<!-- ADMISSIONS CTA -->
-<div class="cta-full" id="admissions">
-  <canvas id="ctaCanvas"></canvas>
-  <div class="cta-content reveal">
-    <div class="section-tag" style="justify-content:center;">Admissions 2025–26</div>
-    <h2 class="section-h">Ready to Begin Your<br><em>Child's Journey?</em></h2>
-    <p class="section-p">Limited seats available across all classes. Join thousands of families who chose excellence. Schedule a campus tour or apply online today.</p>
-    <div class="cta-actions">
-      <a href="#contact" class="btn-gold">Apply Online →</a>
-      <a href="tel:+919876543210" class="btn-ghost">📞 Call Us</a>
-    </div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div style="text-align:center; margin-bottom:5rem;" class="reveal">
-    <div class="section-tag" style="justify-content:center;">Get in Touch</div>
-    <h2 class="section-h" style="text-align:center;">We'd Love to <em>Hear From You</em></h2>
-  </div>
-  <div class="contact-grid">
-    <div class="reveal-left">
-      <div class="section-tag">Contact Information</div>
-      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:400; margin-bottom:0.5rem;">Visit Our Campus</h3>
-      <p class="section-p" style="margin-bottom:0;">We welcome families to tour our campus and experience the Saanvi difference first-hand.</p>
-      <div class="c-info">
-        <div class="c-row">
-          <div class="c-icon">📍</div>
-          <div><div class="c-label">Address</div><div class="c-value">Saanvi International School<br>Survey No. 123, Mangalagiri Road<br>Vijayawada, Andhra Pradesh – 520 001</div></div>
-        </div>
-        <div class="c-row">
-          <div class="c-icon">📞</div>
-          <div><div class="c-label">Phone</div><div class="c-value">+91 98765 43210<br>+91 0866 234 5678</div></div>
-        </div>
-        <div class="c-row">
-          <div class="c-icon">✉️</div>
-          <div><div class="c-label">Email</div><div class="c-value">admissions@saanviinternationalschool.com<br>info@saanviinternationalschool.com</div></div>
-        </div>
-        <div class="c-row">
-          <div class="c-icon">🕐</div>
-          <div><div class="c-label">School Hours</div><div class="c-value">Mon – Fri: 8:00 AM – 3:30 PM<br>Admissions Office: 9:00 AM – 5:00 PM</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal-right">
-      <div class="section-tag">Admission Enquiry</div>
-      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:400; margin-bottom:0.5rem;">Send an Enquiry</h3>
-      <p class="section-p" style="margin-bottom:0;">Fill out the form and our admissions team will contact you within 24 hours.</p>
-      <div class="c-form">
-        <div class="f-row">
-          <div class="f-group"><label>Parent / Guardian Name</label><input type="text" placeholder="Your full name"></div>
-          <div class="f-group"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
-        </div>
-        <div class="f-row">
-          <div class="f-group"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
-          <div class="f-group"><label>Child's Name</label><input type="text" placeholder="Child's full name"></div>
-        </div>
-        <div class="f-row">
-          <div class="f-group">
-            <label>Class Seeking Admission</label>
-            <select>
-              <option value="">Select Class</option>
-              <option>Nursery / LKG / UKG</option>
-              <option>Class I – V</option>
-              <option>Class VI – VIII</option>
-              <option>Class IX – X</option>
-              <option>Class XI – XII</option>
-            </select>
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-indicator gsap-reveal" aria-hidden="true">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
           </div>
-          <div class="f-group">
-            <label>Academic Year</label>
-            <select>
-              <option>2025 – 2026</option>
-              <option>2026 – 2027</option>
-            </select>
+          <span>Scroll to explore</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 2 — VISION & PHILOSOPHY
+    ═══════════════════════════════════════════ -->
+    <section id="vision" class="section-vision" aria-labelledby="vision-heading">
+      <div class="section-container">
+
+        <div class="section-eyebrow gsap-reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          <span>Our Philosophy</span>
+        </div>
+
+        <h2 id="vision-heading" class="section-title gsap-reveal">
+          Shaping minds.<br />
+          <span class="title-muted">Building futures.</span>
+        </h2>
+
+        <div class="vision-grid">
+
+          <!-- Vision Statement Card -->
+          <article class="vision-card glass-card gsap-card" aria-labelledby="vision-card-heading">
+            <div class="card-glyph" aria-hidden="true">01</div>
+            <h3 id="vision-card-heading" class="card-title">Our Vision</h3>
+            <p class="card-body">To infuse the quest for learning in every student as well as inculcate high moral values. We are committed to continuous and comprehensive development of each student — intellectually, morally, and physically.</p>
+          </article>
+
+          <!-- Curriculum Card -->
+          <article class="vision-card glass-card gsap-card" aria-labelledby="curriculum-card-heading">
+            <div class="card-glyph" aria-hidden="true">02</div>
+            <h3 id="curriculum-card-heading" class="card-title">Competitive Curriculum</h3>
+            <p class="card-body">Our CBSE curriculum is purposefully designed not just to educate, but to actively prepare students for competitive examinations — JEE, NEET, and beyond. 100% of our senior faculty hold Master's Degrees.</p>
+          </article>
+
+          <!-- Campus Card -->
+          <article class="vision-card glass-card gsap-card" aria-labelledby="campus-card-heading">
+            <div class="card-glyph" aria-hidden="true">03</div>
+            <h3 id="campus-card-heading" class="card-title">Smart Campus</h3>
+            <p class="card-body">Spread across a verdant 3-acre campus on Kadapa–Tirupati Road, our facilities include interactive smartboards, advanced science and computer laboratories, and dedicated sports fitness zones.</p>
+          </article>
+
+          <!-- Values Card — wide -->
+          <article class="vision-card vision-card--wide glass-card gsap-card" aria-labelledby="values-card-heading">
+            <div class="card-glyph" aria-hidden="true">04</div>
+            <h3 id="values-card-heading" class="card-title">Holistic Development</h3>
+            <p class="card-body">Managed by Sri Annamaiah Vidyaniketan Society, Saanvi International School has been committed since 2015 to nurturing well-rounded individuals. We believe that academic rigour and moral integrity are inseparable — both are cultivated with equal intentionality at every stage of a student's journey.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 3 — CAMPUS HIGHLIGHTS
+    ═══════════════════════════════════════════ -->
+    <section id="campus" class="section-campus" aria-labelledby="campus-heading">
+      <div class="section-container">
+
+        <div class="section-eyebrow gsap-reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          <span>Campus Life</span>
+        </div>
+
+        <h2 id="campus-heading" class="section-title gsap-reveal">
+          A world-class<br />
+          <span class="title-muted">learning environment.</span>
+        </h2>
+
+        <div class="campus-stats-row gsap-reveal">
+          <div class="campus-stat glass-stat">
+            <span class="stat-value">3</span>
+            <span class="stat-unit">Acres</span>
+            <span class="stat-label">Lush green campus</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="campus-stat glass-stat">
+            <span class="stat-value">K–12</span>
+            <span class="stat-unit">Grades</span>
+            <span class="stat-label">Nursery to Class XII</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="campus-stat glass-stat">
+            <span class="stat-value">100%</span>
+            <span class="stat-unit">Masters</span>
+            <span class="stat-label">Senior faculty degrees</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="campus-stat glass-stat">
+            <span class="stat-value">2015</span>
+            <span class="stat-unit">Founded</span>
+            <span class="stat-label">A decade of excellence</span>
           </div>
         </div>
-        <div class="f-group"><label>Message</label><textarea placeholder="Any specific questions or requirements for your child..."></textarea></div>
-        <button class="f-submit" onclick="handleSubmit(event)">Submit Enquiry →</button>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo" style="margin-bottom:0.5rem;">
-          <div class="nav-logo-emblem">S</div>
-          <div class="nav-logo-text">Saanvi International School<span>Est. 2005 · CBSE Affiliated</span></div>
-        </a>
-        <p>Shaping young minds with world-class education, strong values, and the passion to excel in an ever-changing world.</p>
-        <div class="f-social">
-          <a href="#" class="f-s-btn">📘</a>
-          <a href="#" class="f-s-btn">📸</a>
-          <a href="#" class="f-s-btn">🐦</a>
-          <a href="#" class="f-s-btn">▶️</a>
+        <ul class="campus-features-grid" role="list" aria-label="Campus features">
+          <li class="feature-item glass-feature gsap-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Smart Classrooms</h3>
+            <p class="feature-desc">Every classroom is equipped with interactive smartboards enabling dynamic, technology-first pedagogy.</p>
+          </li>
+          <li class="feature-item glass-feature gsap-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Advanced Science Labs</h3>
+            <p class="feature-desc">Fully-equipped Physics, Chemistry, and Biology labs built to exceed CBSE standards and inspire scientific curiosity.</p>
+          </li>
+          <li class="feature-item glass-feature gsap-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="6" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="14" y="6" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M6 12v3M18 12v3M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Computer Laboratories</h3>
+            <p class="feature-desc">Modern computing labs with high-speed internet, empowering students with essential digital literacy from an early age.</p>
+          </li>
+          <li class="feature-item glass-feature gsap-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Sports & Fitness Zones</h3>
+            <p class="feature-desc">Dedicated outdoor and indoor sports zones that promote physical fitness, teamwork, and a healthy competitive spirit.</p>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 4 — EXECUTIVE LEADERSHIP
+    ═══════════════════════════════════════════ -->
+    <section id="leadership" class="section-leadership" aria-labelledby="leadership-heading">
+      <div class="section-container">
+
+        <div class="section-eyebrow gsap-reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          <span>Executive Leadership</span>
+        </div>
+
+        <h2 id="leadership-heading" class="section-title gsap-reveal">
+          Guided by<br />
+          <span class="title-muted">vision &amp; purpose.</span>
+        </h2>
+
+        <div class="leadership-grid">
+
+          <!-- Chairman Card -->
+          <article class="leader-card glass-card-deep gsap-card" aria-labelledby="chairman-name">
+            <div class="leader-image-wrap">
+              <img
+                src="27002.jpg"
+                alt="Mr. Konduru Sarath Kumar Raju, Chairman of Saanvi International School"
+                class="leader-image"
+                loading="lazy"
+                width="320"
+                height="320"
+              />
+              <div class="leader-image-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="leader-info">
+              <span class="leader-role">Chairman &amp; Founder</span>
+              <h3 id="chairman-name" class="leader-name">Mr. Konduru Sarath Kumar Raju</h3>
+              <span class="leader-credentials">M.A., B.L.</span>
+              <blockquote class="leader-message">
+                <p>"Education is not merely the transfer of knowledge — it is the foundation of all progress. At Saanvi, we are determined to build an institution where every child discovers their highest potential and emerges as a confident, compassionate contributor to society."</p>
+              </blockquote>
+            </div>
+          </article>
+
+          <!-- Principal Card -->
+          <article class="leader-card glass-card-deep gsap-card" aria-labelledby="principal-name">
+            <div class="leader-image-wrap">
+              <img
+                src="27003.jpg"
+                alt="Mr. Madugu Prabhakar, Principal of Saanvi International School"
+                class="leader-image"
+                loading="lazy"
+                width="320"
+                height="320"
+              />
+              <div class="leader-image-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="leader-info">
+              <span class="leader-role">Principal</span>
+              <h3 id="principal-name" class="leader-name">Mr. Madugu Prabhakar</h3>
+              <span class="leader-credentials">M.Sc., B.Ed., M.A. Lit</span>
+              <blockquote class="leader-message">
+                <p>"Academic excellence and character development are not competing goals — they are two sides of the same coin. Our committed faculty guides each student with the understanding that a great education transforms not just careers, but lives."</p>
+              </blockquote>
+            </div>
+          </article>
+
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Academics</h4>
-        <ul>
-          <li><a href="#">Early Childhood</a></li>
-          <li><a href="#">Primary Programme</a></li>
-          <li><a href="#">Middle School</a></li>
-          <li><a href="#">Secondary Board</a></li>
-          <li><a href="#">Senior Secondary</a></li>
-          <li><a href="#">Co-Curriculars</a></li>
-        </ul>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 5 — CONTACT / ADMISSIONS FOOTER
+    ═══════════════════════════════════════════ -->
+    <section id="contact" class="section-contact" aria-labelledby="contact-heading">
+      <div class="section-container">
+
+        <div class="contact-inner glass-card-deep gsap-reveal">
+
+          <div class="contact-text-group">
+            <div class="section-eyebrow">
+              <span class="eyebrow-line" aria-hidden="true"></span>
+              <span>Admissions Open</span>
+            </div>
+            <h2 id="contact-heading" class="contact-title">
+              Begin your child's<br />journey with us.
+            </h2>
+            <address class="contact-address" aria-label="School address">
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5c0 3-4.5 8.5-4.5 8.5S3.5 9 3.5 6A4.5 4.5 0 0 1 8 1.5Z" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
+              Kadapa–Tirupati Road, Boyanapalli,<br />
+              Rajampet, Kadapa, Andhra Pradesh — 516126
+            </address>
+            <p class="contact-managed">Managed by <strong>Sri Annamaiah Vidyaniketan Society</strong></p>
+          </div>
+
+          <div class="contact-actions-group">
+            <a href="tel:+919963657658" class="btn-primary btn-primary--large glass-pill-btn" aria-label="Call admissions at 9963657658">
+              <svg class="btn-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M2.5 3.125C2.5 2.78 2.78 2.5 3.125 2.5h3.4a.625.625 0 0 1 .609.482l1.02 4.082a.625.625 0 0 1-.183.62L6.125 8.876a11.331 11.331 0 0 0 4.999 5l1.19-1.845a.625.625 0 0 1 .621-.182l4.082 1.02a.625.625 0 0 1 .483.61v3.396a.625.625 0 0 1-.625.625C7.555 17.5 2.5 12.445 2.5 3.125Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+              Call: +91 99636 57658
+            </a>
+
+            <div class="contact-meta">
+              <span class="meta-item">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M7 4v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+                Mon – Sat &nbsp;|&nbsp; 8:00 AM – 4:00 PM
+              </span>
+              <span class="meta-item">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M7 1.5A5.5 5.5 0 1 1 1.5 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M1.5 4V7h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Admissions for 2025–26 are open
+              </span>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-      <div class="footer-col">
-        <h4>Admissions</h4>
-        <ul>
-          <li><a href="#">How to Apply</a></li>
-          <li><a href="#">Eligibility Criteria</a></li>
-          <li><a href="#">Fee Structure</a></li>
-          <li><a href="#">Scholarships</a></li>
-          <li><a href="#">Campus Tour</a></li>
-          <li><a href="#">FAQs</a></li>
-        </ul>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       SITE FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">Saanvi International School</span>
+        <span class="footer-tagline">Knowledge is Soul</span>
       </div>
-      <div class="footer-col">
-        <h4>School Life</h4>
-        <ul>
-          <li><a href="#">Sports & Athletics</a></li>
-          <li><a href="#">Arts & Culture</a></li>
-          <li><a href="#">Student Council</a></li>
-          <li><a href="#">Events Calendar</a></li>
-          <li><a href="#">News & Achievements</a></li>
-          <li><a href="#">Alumni Network</a></li>
-        </ul>
+      <div class="footer-right">
+        <p class="footer-copyright">
+          © <span id="footer-year"></span> Saanvi International School.<br />
+          Sri Annamaiah Vidyaniketan Society. All rights reserved.
+        </p>
+        <p class="footer-affiliation">CBSE Affiliation No: 130464</p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Saanvi International School. All rights reserved.</p>
-      <p><a href="#">Privacy Policy</a> · <a href="#">Terms</a> · Designed with ♥ for Excellence</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- TOAST -->
-<div id="toast" style="position:fixed;bottom:2rem;right:2rem;background:linear-gradient(135deg,#C9A455,#E8C97A);color:#07111f;padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:0.9rem;transform:translateY(100px);opacity:0;transition:all 0.4s;z-index:9999;">✓ Enquiry submitted! We'll contact you soon.</div>
-
-<!-- SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-// ════════════════════════════════════════════════════════════════
-//  HERO THREE.JS SCENE — Gold Particle Constellation Sphere
-// ════════════════════════════════════════════════════════════════
-(function() {
-  const canvas = document.getElementById('heroCanvas');
-  const W = window.innerWidth, H = window.innerHeight;
-
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(W, H);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(70, W / H, 0.1, 200);
-  camera.position.z = 38;
-
-  // ── PARTICLE SPHERE ──
-  const COUNT = 2800;
-  const pos = new Float32Array(COUNT * 3);
-  const col = new Float32Array(COUNT * 3);
-  const sz  = new Float32Array(COUNT);
-  const phi_arr = new Float32Array(COUNT);
-  const theta_arr = new Float32Array(COUNT);
-
-  for (let i = 0; i < COUNT; i++) {
-    const phi   = Math.acos(-1 + (2 * i) / COUNT);
-    const theta = Math.sqrt(COUNT * Math.PI) * phi;
-    phi_arr[i]   = phi;
-    theta_arr[i] = theta;
-    const r = 16 + (Math.random() - 0.5) * 6;
-    pos[i*3]   = r * Math.sin(phi) * Math.cos(theta);
-    pos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-    pos[i*3+2] = r * Math.cos(phi);
-
-    const t = Math.random();
-    if (t > 0.65) { col[i*3]=0.98; col[i*3+1]=0.78; col[i*3+2]=0.33; } // gold
-    else if (t > 0.4) { col[i*3]=1; col[i*3+1]=1; col[i*3+2]=1; } // white
-    else { col[i*3]=0.4; col[i*3+1]=0.6; col[i*3+2]=1.0; } // blue-white
-    sz[i] = Math.random() * 2.2 + 0.5;
-  }
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  geo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
-  geo.setAttribute('aSize',    new THREE.BufferAttribute(sz,  1));
-
-  const mat = new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 } },
-    vertexShader: `
-      attribute vec3 color;
-      attribute float aSize;
-      varying vec3 vColor;
-      varying float vAlpha;
-      uniform float uTime;
-      void main() {
-        vColor = color;
-        float wave = sin(uTime * 0.8 + position.y * 0.15) * 0.5 + 0.5;
-        vAlpha = 0.5 + wave * 0.5;
-        vec4 mv = modelViewMatrix * vec4(position, 1.0);
-        gl_PointSize = aSize * (320.0 / -mv.z);
-        gl_Position = projectionMatrix * mv;
-      }
-    `,
-    fragmentShader: `
-      varying vec3 vColor;
-      varying float vAlpha;
-      void main() {
-        vec2 uv = gl_PointCoord - 0.5;
-        float d = length(uv);
-        if (d > 0.5) discard;
-        float a = (1.0 - smoothstep(0.15, 0.5, d)) * vAlpha;
-        gl_FragColor = vec4(vColor, a);
-      }
-    `,
-    transparent: true,
-    vertexColors: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending
-  });
-
-  const points = new THREE.Points(geo, mat);
-  scene.add(points);
-
-  // ── WIREFRAME ICOSAHEDRON ──
-  const icoMat = new THREE.MeshBasicMaterial({ color: 0xC9A455, wireframe: true, transparent: true, opacity: 0.1 });
-  const ico1 = new THREE.Mesh(new THREE.IcosahedronGeometry(4, 1), icoMat);
-  const ico2 = new THREE.Mesh(new THREE.IcosahedronGeometry(6.5, 1), new THREE.MeshBasicMaterial({ color: 0x4a6fa5, wireframe: true, transparent: true, opacity: 0.06 }));
-  ico1.position.set(-10, 4, -8);
-  ico2.position.set(12, -5, -12);
-  scene.add(ico1, ico2);
-
-  // ── CONNECTION LINES CLUSTER ──
-  const linePts = [];
-  for (let i = 0; i < 40; i++) {
-    const a = (Math.random() * 2 - 1) * 20;
-    const b = (Math.random() * 2 - 1) * 14;
-    const c = (Math.random() * 2 - 1) * 10;
-    linePts.push(new THREE.Vector3(a, b, c));
-  }
-  const lineGeo = new THREE.BufferGeometry();
-  const lineVerts = [];
-  for (let i = 0; i < linePts.length; i++) {
-    for (let j = i + 1; j < linePts.length; j++) {
-      const d = linePts[i].distanceTo(linePts[j]);
-      if (d < 7) {
-        lineVerts.push(linePts[i].x, linePts[i].y, linePts[i].z, linePts[j].x, linePts[j].y, linePts[j].z);
-      }
-    }
-  }
-  lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(lineVerts), 3));
-  const lineMat = new THREE.LineBasicMaterial({ color: 0xC9A455, transparent: true, opacity: 0.12 });
-  scene.add(new THREE.LineSegments(lineGeo, lineMat));
-
-  // ── FLOATING RING ──
-  const ringGeo = new THREE.TorusGeometry(22, 0.12, 4, 80);
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0xC9A455, transparent: true, opacity: 0.08 });
-  const ring = new THREE.Mesh(ringGeo, ringMat);
-  ring.rotation.x = 1.2;
-  scene.add(ring);
-
-  // ── MOUSE PARALLAX ──
-  let mx = 0, my = 0, tmx = 0, tmy = 0;
-  document.addEventListener('mousemove', e => {
-    tmx = (e.clientX / window.innerWidth  - 0.5) * 6;
-    tmy = (e.clientY / window.innerHeight - 0.5) * 4;
-  });
-
-  let t = 0;
-  function tick() {
-    requestAnimationFrame(tick);
-    t += 0.004;
-    mx += (tmx - mx) * 0.04;
-    my += (tmy - my) * 0.04;
-
-    points.rotation.y = t * 0.25;
-    points.rotation.x = t * 0.08;
-    points.rotation.z = Math.sin(t * 0.5) * 0.04;
-    mat.uniforms.uTime.value = t;
-
-    ico1.rotation.x += 0.006;
-    ico1.rotation.y += 0.01;
-    ico2.rotation.x -= 0.005;
-    ico2.rotation.y += 0.007;
-    ring.rotation.z = t * 0.15;
-
-    camera.position.x += (mx - camera.position.x) * 0.05;
-    camera.position.y += (-my - camera.position.y) * 0.05;
-    camera.lookAt(0, 0, 0);
-    renderer.render(scene, camera);
-  }
-  tick();
-
-  window.addEventListener('resize', () => {
-    const W = window.innerWidth, H = window.innerHeight;
-    camera.aspect = W / H;
-    camera.updateProjectionMatrix();
-    renderer.setSize(W, H);
-  });
-})();
-
-// ════════════════════════════════════════════════════════════════
-//  BG SHADER — Aurora WebGL Background
-// ════════════════════════════════════════════════════════════════
-(function() {
-  const canvas = document.getElementById('bgShader');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    gl.viewport(0, 0, canvas.width, canvas.height);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const vsrc = `
-    attribute vec2 aPos;
-    void main() { gl_Position = vec4(aPos, 0.0, 1.0); }
-  `;
-  const fsrc = `
-    precision highp float;
-    uniform float uT;
-    uniform vec2  uRes;
-
-    float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-
-    float noise(vec2 p) {
-      vec2 i = floor(p);
-      vec2 f = fract(p);
-      vec2 u = f * f * (3.0 - 2.0 * f);
-      return mix(
-        mix(hash(i), hash(i + vec2(1,0)), u.x),
-        mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), u.x), u.y
-      );
-    }
-
-    float fbm(vec2 p) {
-      float v = 0.0, a = 0.5;
-      for (int i = 0; i < 5; i++) { v += a * noise(p); p *= 2.1; a *= 0.5; }
-      return v;
-    }
-
-    void main() {
-      vec2 uv = gl_FragCoord.xy / uRes;
-      vec2 p = uv * 2.5;
-
-      float n1 = fbm(p + vec2(uT * 0.04, uT * 0.02));
-      float n2 = fbm(p + vec2(0.5, 1.2) + uT * 0.03);
-
-      vec3 col1 = vec3(0.04, 0.07, 0.15);   // deep navy
-      vec3 col2 = vec3(0.06, 0.12, 0.28);   // mid navy
-      vec3 col3 = vec3(0.35, 0.25, 0.06) * 0.35; // gold hint
-
-      float horizon = 1.0 - uv.y;
-      vec3 base = mix(col1, col2, horizon * 1.2);
-      vec3 aurora = mix(base, col3, n1 * n2 * 0.6);
-      aurora += col3 * pow(n1 * (1.0 - uv.y * 0.8), 3.0) * 0.5;
-
-      gl_FragColor = vec4(aurora, 1.0);
-    }
-  `;
-
-  function mkShader(type, src) {
-    const s = gl.createShader(type);
-    gl.shaderSource(s, src); gl.compileShader(s); return s;
-  }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, mkShader(gl.VERTEX_SHADER,   vsrc));
-  gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, fsrc));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
-
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-
-  const aPos = gl.getAttribLocation(prog, 'aPos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-
-  const uT   = gl.getUniformLocation(prog, 'uT');
-  const uRes = gl.getUniformLocation(prog, 'uRes');
-
-  function draw(t) {
-    requestAnimationFrame(draw);
-    gl.uniform1f(uT, t * 0.001);
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-  }
-  requestAnimationFrame(draw);
-})();
-
-// ════════════════════════════════════════════════════════════════
-//  CTA CANVAS — WebGL Particle Field
-// ════════════════════════════════════════════════════════════════
-(function() {
-  const canvas = document.getElementById('ctaCanvas');
-  const cta = canvas.parentElement;
-  const gl = canvas.getContext('webgl');
-  if (!gl) return;
-
-  function resize() {
-    canvas.width  = cta.offsetWidth;
-    canvas.height = cta.offsetHeight;
-    gl.viewport(0, 0, canvas.width, canvas.height);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const N = 80;
-  const posArr = new Float32Array(N * 2);
-  const velArr = new Float32Array(N * 2);
-  for (let i = 0; i < N; i++) {
-    posArr[i*2]   = Math.random() * 2 - 1;
-    posArr[i*2+1] = Math.random() * 2 - 1;
-    const angle = Math.random() * Math.PI * 2;
-    const spd   = 0.0003 + Math.random() * 0.0003;
-    velArr[i*2]   = Math.cos(angle) * spd;
-    velArr[i*2+1] = Math.sin(angle) * spd;
-  }
-
-  const vs = `attribute vec2 p; void main() { gl_PointSize = 3.0; gl_Position = vec4(p, 0.0, 1.0); }`;
-  const fs = `precision mediump float; void main() { vec2 c = gl_PointCoord - 0.5; float d = length(c); if(d>0.5) discard; gl_FragColor = vec4(0.788, 0.643, 0.333, (0.5 - d) * 1.8); }`;
-
-  const mkS = (t, s) => { const sh = gl.createShader(t); gl.shaderSource(sh, s); gl.compileShader(sh); return sh; };
-  const pr = gl.createProgram();
-  gl.attachShader(pr, mkS(gl.VERTEX_SHADER, vs));
-  gl.attachShader(pr, mkS(gl.FRAGMENT_SHADER, fs));
-  gl.linkProgram(pr); gl.useProgram(pr);
-
-  const buf = gl.createBuffer();
-  const aP  = gl.getAttribLocation(pr, 'p');
-  gl.enableVertexAttribArray(aP);
-  gl.enable(gl.BLEND);
-  gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
-
-  function frame() {
-    requestAnimationFrame(frame);
-    for (let i = 0; i < N; i++) {
-      posArr[i*2]   += velArr[i*2];
-      posArr[i*2+1] += velArr[i*2+1];
-      if (Math.abs(posArr[i*2])   > 1) velArr[i*2]   *= -1;
-      if (Math.abs(posArr[i*2+1]) > 1) velArr[i*2+1] *= -1;
-    }
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, posArr, gl.DYNAMIC_DRAW);
-    gl.vertexAttribPointer(aP, 2, gl.FLOAT, false, 0, 0);
-    gl.drawArrays(gl.POINTS, 0, N);
-  }
-  frame();
-})();
-
-// ════════════════════════════════════════════════════════════════
-//  HERO TEXT ANIMATION
-// ════════════════════════════════════════════════════════════════
-setTimeout(() => {
-  const badge    = document.querySelector('.hero-badge');
-  const title    = document.querySelector('.hero-title');
-  const subtitle = document.querySelector('.hero-subtitle');
-  const actions  = document.querySelector('.hero-actions');
-
-  function animIn(el, delay) {
-    setTimeout(() => {
-      el.style.transition = 'opacity 1s ease, transform 1s ease';
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    }, delay);
-  }
-  animIn(badge, 200);
-  animIn(title, 500);
-  animIn(subtitle, 800);
-  animIn(actions, 1100);
-}, 100);
-
-// ════════════════════════════════════════════════════════════════
-//  SCROLL-TRIGGERED REVEAL
-// ════════════════════════════════════════════════════════════════
-const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-  });
-}, { threshold: 0.12 });
-revealEls.forEach(el => io.observe(el));
-
-// ════════════════════════════════════════════════════════════════
-//  COUNTER ANIMATION
-// ════════════════════════════════════════════════════════════════
-const counters = document.querySelectorAll('.count');
-const cio = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el  = e.target;
-    const end = parseInt(el.dataset.target);
-    const dur = 2000;
-    const step = end / (dur / 16);
-    let cur = 0;
-    const timer = setInterval(() => {
-      cur = Math.min(cur + step, end);
-      el.textContent = Math.floor(cur).toLocaleString();
-      if (cur >= end) clearInterval(timer);
-    }, 16);
-    cio.unobserve(el);
-  });
-}, { threshold: 0.5 });
-counters.forEach(c => cio.observe(c));
-
-// ════════════════════════════════════════════════════════════════
-//  NAV SCROLL BEHAVIOR
-// ════════════════════════════════════════════════════════════════
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// ════════════════════════════════════════════════════════════════
-//  TESTIMONIAL SLIDER
-// ════════════════════════════════════════════════════════════════
-let tIdx = 0;
-const track = document.getElementById('testiTrack');
-const cards = track.querySelectorAll('.testi-card');
-const perView = window.innerWidth < 768 ? 1 : 3;
-
-function updateSlider() {
-  const max = Math.max(0, cards.length - perView);
-  tIdx = Math.max(0, Math.min(tIdx, max));
-  const cardW = cards[0].offsetWidth + 32;
-  track.style.transform = `translateX(-${tIdx * cardW}px)`;
-}
-
-document.getElementById('tPrev').addEventListener('click', () => { tIdx = Math.max(0, tIdx - 1); updateSlider(); });
-document.getElementById('tNext').addEventListener('click', () => { tIdx++; updateSlider(); });
-
-let autoT = setInterval(() => { tIdx++; updateSlider(); }, 5000);
-track.parentElement.addEventListener('mouseenter', () => clearInterval(autoT));
-track.parentElement.addEventListener('mouseleave', () => { autoT = setInterval(() => { tIdx++; updateSlider(); }, 5000); });
-
-// ════════════════════════════════════════════════════════════════
-//  3D CARD TILT
-// ════════════════════════════════════════════════════════════════
-document.querySelectorAll('.prg-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width  - 0.5;
-    const y = (e.clientY - r.top)  / r.height - 0.5;
-    card.style.transform = `perspective(800px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg) translateY(-8px)`;
-  });
-  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-});
-
-// ════════════════════════════════════════════════════════════════
-//  FORM SUBMIT
-// ════════════════════════════════════════════════════════════════
-function handleSubmit(e) {
-  e.preventDefault();
-  const toast = document.getElementById('toast');
-  toast.style.transform = 'translateY(0)';
-  toast.style.opacity = '1';
-  setTimeout(() => { toast.style.transform = 'translateY(100px)'; toast.style.opacity = '0'; }, 4000);
-}
-
-// ════════════════════════════════════════════════════════════════
-//  SMOOTH ANCHOR SCROLL
-// ════════════════════════════════════════════════════════════════
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    if (id === '#') return;
-    const target = document.querySelector(id);
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
-
-// ════════════════════════════════════════════════════════════════
-//  CURSOR GLOW
-// ════════════════════════════════════════════════════════════════
-const cursor = document.createElement('div');
-Object.assign(cursor.style, {
-  position: 'fixed', width: '24px', height: '24px',
-  borderRadius: '50%', pointerEvents: 'none', zIndex: '9998',
-  background: 'radial-gradient(circle, rgba(201,164,85,0.25) 0%, transparent 70%)',
-  transform: 'translate(-50%, -50%)',
-  transition: 'width 0.2s, height 0.2s',
-  mixBlendMode: 'screen'
-});
-document.body.appendChild(cursor);
-
-let cx = 0, cy = 0, tcx = 0, tcy = 0;
-document.addEventListener('mousemove', e => { tcx = e.clientX; tcy = e.clientY; });
-(function moveCursor() {
-  requestAnimationFrame(moveCursor);
-  cx += (tcx - cx) * 0.12;
-  cy += (tcy - cy) * 0.12;
-  cursor.style.left = cx + 'px';
-  cursor.style.top  = cy + 'px';
-})();
-
-document.querySelectorAll('a, button, .prg-card, .g-item').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.width = '48px'; cursor.style.height = '48px'; });
-  el.addEventListener('mouseleave', () => { cursor.style.width = '24px'; cursor.style.height = '24px'; });
-});
-
-// ════════════════════════════════════════════════════════════════
-//  GALLERY HOVER GLOW
-// ════════════════════════════════════════════════════════════════
-document.querySelectorAll('.g-item').forEach(item => {
-  item.addEventListener('mouseenter', () => {
-    item.style.boxShadow = '0 0 40px rgba(201,164,85,0.2), 0 20px 40px rgba(0,0,0,0.5)';
-  });
-  item.addEventListener('mouseleave', () => { item.style.boxShadow = ''; });
-});
-</script>
+  <script src="app.js"></script>
 </body>
 </html>
