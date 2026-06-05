@@ -262,12 +262,19 @@ blockquote {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: var(--color-white);
-  color: var(--color-bg);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  overflow: hidden;
   flex-shrink: 0;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--glass-border);
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: inherit;
 }
 
 .logo-text {
@@ -1182,3 +1189,4 @@ blockquote {
 
   body { background: white; color: black; }
 }
+
